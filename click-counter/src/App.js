@@ -1,26 +1,14 @@
-import React, { Component } from 'react'
-import logo from './logo.svg'
+import React, { useState } from 'react'
 import './App.css'
 
-export class App extends Component {
-  render () {
-    return (
-      <div className='App'>
-        <header className='App-header'>
-          <img src={logo} className='App-logo' alt='logo' />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className='App-link'
-            href='https://reactjs.org'
-            target='_blank'
-            rel='noopener noreferrer'
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    )
+export const App = props => {
+  const [clicks, setClicks] = useState(0)
+
+  const handleClick = _ => {
+    setClicks(clicks + 1)
   }
+
+  return (
+    <div onClick={handleClick} >This div has been clicked {clicks} times.</div>
+  )
 }
