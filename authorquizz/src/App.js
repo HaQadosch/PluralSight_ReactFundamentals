@@ -1,29 +1,18 @@
-import React, { Component } from 'react'
-import logo from './logo.svg'
+import React from 'react'
 import './App.css'
 import './bootstrap.min.css'
+import { Hero } from './Components/Hero'
+import { Turn } from './Components/Turn'
+import { Continue } from './Components/Continue'
+import { Footer } from './Components/Footer'
 
-class App extends Component {
-  render () {
-    return (
-      <div className='App'>
-        <header className='App-header'>
-          <img src={logo} className='App-logo' alt='logo' />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className='App-link'
-            href='https://reactjs.org'
-            target='_blank'
-            rel='noopener noreferrer'
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    )
-  }
+export const App = () => {
+  return (
+    <main className='container-fluid'>
+      <Hero />
+      <Turn />
+      <Continue />
+      <Footer />
+    </main>
+  )
 }
-
-export default App
