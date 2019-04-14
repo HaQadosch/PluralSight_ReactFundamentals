@@ -1,0 +1,17 @@
+div {
+  background-color: white;
+}
+
+.turn {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.turn > div {
+  height: 400px;
+}
+
+img {
+  max-height: 100%;
+  width: 100%;
+}
