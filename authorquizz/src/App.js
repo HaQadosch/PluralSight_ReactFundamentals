@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import './App.css'
 import './bootstrap.min.css'
-import { Hero } from './Components/Hero'
-import { Turn } from './Components/Turn'
-import { Continue } from './Components/Continue'
-import { Footer } from './Components/Footer'
 import shuffle from 'lodash.shuffle'
 import sample from 'lodash.sample'
+import { Continue } from './Components/Continue'
+import { Footer } from './Components/Footer'
+import { Hero } from './Components/Hero'
+import { Turn } from './Components/Turn'
+import { AddAuthorForm } from './Components/AddAuthorForm'
 
 const authors = [
   {
@@ -82,10 +84,15 @@ export const App = () => {
 
   return (
     <main className='container-fluid'>
-      <Hero />
-      <Turn key={key} {...turnData} answer={answer} onClick={onAnswerSelected} />
-      <Continue />
-      <Footer />
+      <Router>
+        <Route path='/' component={Hero} />
+        <Switch>
+          <Route path='/add' render={_ => <AddAuthorForm />} />
+          <Route path='/' render={_ => <Turn key={key} {...turnData} answer={answer} onClick={onAnswerSelected} />} />
+        </Switch>
+        <Route path='/' component={Continue} />
+        <Route path='/' component={Footer} />
+      </Router>
     </main>
   )
 }
