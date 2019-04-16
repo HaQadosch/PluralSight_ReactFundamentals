@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './App.css'
 import './bootstrap.min.css'
 import { Hero } from './Components/Hero'
@@ -55,21 +55,35 @@ const getTurnData = authors => {
   const goodBook = sample(random4)
   const associatedAuthor = authors.find(author => author.books.some(title => title === goodBook))
 
-  console.log({ goodBook })
-
   return {
     author: associatedAuthor,
-    books: random4
+    books: random4,
+    goodBook
   }
 }
 
-const turnData = { ...getTurnData(authors) }
+let turnData = { ...getTurnData(authors) }
 
 export const App = () => {
+  const [key, setKey] = useState(0)
+  const [answer, setAnswer] = useState('none')
+  const reset = _ => {
+    turnData = { ...getTurnData(authors) }
+    setAnswer('none')
+    setKey(key + 1)
+  }
+  const onAnswerSelected = title => {
+    const isCorrect = title === turnData.goodBook
+    setAnswer(isCorrect ? 'right' : 'wrong')
+    if (isCorrect) {
+      setTimeout(reset.bind(this), 250)
+    }
+  }
+
   return (
     <main className='container-fluid'>
       <Hero />
-      <Turn {...turnData} />
+      <Turn key={key} {...turnData} answer={answer} onClick={onAnswerSelected} />
       <Continue />
       <Footer />
     </main>

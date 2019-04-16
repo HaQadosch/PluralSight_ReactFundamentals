@@ -1,10 +1,16 @@
-div {
-  background-color: white;
-}
-
 .turn {
   padding-top: 20px;
   padding-bottom: 20px;
+}
+
+.turn__none {
+  background-color: white;
+}
+.turn__right {
+  background-color: green;
+}
+.turn__wrong {
+  background-color: red;
 }
 
 .turn > div {
