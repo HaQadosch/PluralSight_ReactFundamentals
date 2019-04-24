@@ -1,2 +1,2 @@
-# FrontEndMasters_ReactFundamentals
+# PluralSight_ReactFundamentals
 https://app.pluralsight.com/library/courses/react-fundamentals-update/
