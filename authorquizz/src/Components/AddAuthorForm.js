@@ -17,7 +17,7 @@ export const AddAuthorForm = ({ history, onAddBookSubmit }) => {
       imageSource: 'Wikimedia Commons',
       books: authorBooks
     })
-    // history.push('/')
+    history.push('/')
   }
 
   const handleBookAdd = index => ({ target: { value } }) => {

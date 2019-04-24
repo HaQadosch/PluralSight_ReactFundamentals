@@ -6,7 +6,6 @@ export const Turn = ({ author, books, goodBook, onClick: onAnswerSelected }) => 
   const [answer, setAnswer] = useState('none')
 
   function onClick (bookTitle) {
-    console.log({ bookTitle, author, books, goodBook })
     const isCorrect = bookTitle === goodBook
     setAnswer(isCorrect ? 'right' : 'wrong')
     if (isCorrect) {
