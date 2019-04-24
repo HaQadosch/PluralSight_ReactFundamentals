@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 import './App.css'
 import './bootstrap.min.css'
 import shuffle from 'lodash.shuffle'
@@ -64,22 +64,21 @@ const getTurnData = authors => {
   }
 }
 
-let turnData = { ...getTurnData(authors) }
-
 export const App = () => {
   const [key, setKey] = useState(0)
-  const [answer, setAnswer] = useState('none')
-  const reset = _ => {
-    turnData = { ...getTurnData(authors) }
-    setAnswer('none')
-    setKey(key + 1)
-  }
-  const onAnswerSelected = title => {
-    const isCorrect = title === turnData.goodBook
-    setAnswer(isCorrect ? 'right' : 'wrong')
-    if (isCorrect) {
-      setTimeout(reset.bind(this), 250)
+  const library = authors
+  let turnData = { ...getTurnData(library) }
+
+  const onAnswerSelected = _ => {
+    function reset () {
+      turnData = { ...getTurnData(library) }
+      setKey(key + 1)
     }
+    setTimeout(reset, 250)
+  }
+
+  const onAddBookSubmit = newAuthorEntry => {
+    library.concat(newAuthorEntry)
   }
 
   return (
@@ -87,10 +86,11 @@ export const App = () => {
       <Router>
         <Route path='/' component={Hero} />
         <Switch>
-          <Route path='/add' render={_ => <AddAuthorForm />} />
-          <Route path='/' render={_ => <Turn key={key} {...turnData} answer={answer} onClick={onAnswerSelected} />} />
+          <Route path='/add' render={props => <AddAuthorForm {...props} onAddBookSubmit={onAddBookSubmit} />} />
+          <Route path='/' render={_ => <Turn key={key} {...turnData} onClick={onAnswerSelected} />} />
         </Switch>
         <Route path='/' component={Continue} />
+        <Route exact path='/' render={_ => <Link to='/add'>Add an author</Link>} />
         <Route path='/' component={Footer} />
       </Router>
     </main>

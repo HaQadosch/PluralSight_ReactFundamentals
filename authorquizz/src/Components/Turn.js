@@ -1,8 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Turn.css'
 import { Book } from './Book'
 
-export const Turn = ({ author, books, answer, onClick }) => {
+export const Turn = ({ author, books, goodBook, onClick: onAnswerSelected }) => {
+  const [answer, setAnswer] = useState('none')
+
+  function onClick (bookTitle) {
+    console.log({ bookTitle, author, books, goodBook })
+    const isCorrect = bookTitle === goodBook
+    setAnswer(isCorrect ? 'right' : 'wrong')
+    if (isCorrect) {
+      onAnswerSelected()
+    }
+  }
+
   return (
     <div className={`row turn turn__${answer}`}>
       <div className='col-4 offset-1'>

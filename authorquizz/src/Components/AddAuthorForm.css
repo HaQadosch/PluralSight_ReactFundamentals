@@ -1,0 +1,40 @@
+section {
+  width: 80%;
+  margin: 5px 10%;
+}
+
+form {
+  display: flex;
+  justify-content: space-between;
+}
+
+section fieldset {
+  margin-bottom: 20px;
+}
+
+section fieldset > label {
+  display: block;
+}
+
+input[name^=book] {
+  display: block;
+  margin-bottom: 10px;
+}
+
+button {
+  display: none;
+}
+
+button:last-of-type {
+  display: block;
+  margin-top: 10px;
+}
+
+button:last-of-type.button--4 {
+  display: none;
+}
+
+input[type=submit] {
+  height: 50px;
+  align-self: center;
+}
